@@ -45,7 +45,7 @@ jobs:
         run: |
         $a = "12345"
 
-        Write-Output "::set-output name=sp_secret::$($a)"
+        Write-Output "::set-output name=sp_secret::$a"
 
     orlando:
       - name: Check
