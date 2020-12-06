@@ -44,7 +44,6 @@ jobs:
         shell: pwsh
         run: |
         $a = "12345"
-
         Write-Output "::set-output name=sp_secret::$a"
 
     orlando:
