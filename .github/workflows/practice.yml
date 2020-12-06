@@ -42,7 +42,8 @@ jobs:
       - uses: actions/setup-node@v1
       - run: npm install -g bats
       - run: bats -v
-
+      
+# creates an artifact.
   example-job:
     name: Save output
     runs-on: ubuntu-latest
