@@ -1,0 +1,92 @@
+name: Array
+
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+  #   inputs:
+  #     domain_name:
+  #       description: 'name of certificate referenced within certificates.json'
+  #       required: false
+  #     renew_certificate:
+  #       description: 'renew certificate (disable, auto, force)'
+  #       required: false
+  #       default: 'auto'
+  #     apply_certificate:
+  #       description: 'apply certificate (disable, auto, force)'
+  #       required: false
+  #       default: 'auto'
+
+jobs:
+  find-exp-certs:
+    # needs:
+      # - prepare-cert-renewal
+      # - check-cert-renewal
+      # - renew-cert
+    outputs:
+      renew: ${{ steps.checkapply.outputs.renew }}
+  
+    runs-on: ubuntu-latest
+      # - ${{ needs.prepare-cert-renewal.outputs.runner_env }}
+    env:
+      # domain_name: ${{ steps.parseinput.outputs.domain_name }}
+      config_filename: "./files/poccerts.json"
+    # if: ${{ needs.prepare-cert-renewal.outputs.apply_certificate == 'force' || (needs.prepare-cert-renewal.outputs.apply_certificate == 'auto' && needs.renew-cert.outputs.renewed_cert == 'true') }}
+    steps:
+      - name: clone repo
+        uses: actions/checkout@v2
+        
+
+      - name: Check
+        id: checkapply
+        shell: pwsh
+        run: |
+          $certSearch = @()
+          $certficateJson = $certficate | ConvertFrom-JSon
+
+          $certficateJson = $certficateJson.certificates | Group-Object -Property keyvault_subscription
+   
+          
+
+          foreach ($vaults in $certficateJson){
+          
+          foreach($b in $vault.group | Group-Object -Property keyvault) {
+                      
+     
+          $d = get-date
+          
+          $weeks = [math]::ceiling($ts.Days/7)
+          #Write-Output "The certificate $cert_name will expire $weeks Weeks from now"
+      
+     
+          
+          $item = New-Object PSObject
+          
+          
+          
+          $item | Add-Member -type NoteProperty -Name 'Subscription' -Value $($b.group.zone_subscription)
+          $item | Add-Member -type NoteProperty -Name 'keyvaultSubscription' -Value $($b.group.keyvault_subscription)
+          $item | Add-Member -type NoteProperty -Name 'environment ' -Value $($b.group.keyvault_subscription)
+          $item | Add-Member -type NoteProperty -Name 'appGwFrontEnd' -Value $($b.group.frontend_appgateways)
+          $item | Add-Member -type NoteProperty -Name 'appGwBackEnd' -Value $($b.group.backend_appgateways)
+          $item | Add-Member -type NoteProperty -Name 'haproxy' -Value $($b.group.haproxy)
+          $item | Add-Member -type NoteProperty -Name 'iis' -Value $($b.group.iis)
+          $item | Add-Member -type NoteProperty -Name 'AnsiblePlaybook' -Value $($b.group.AnsiblePlaybook)
+          $certSearch += $item
+               
+    
+          
+               
+
+                  
+          
+          }}
+          $test = $certSearch  | Select-Object -First 1 | convertTo-Json
+          
+          
+
+          

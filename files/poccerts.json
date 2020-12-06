@@ -1,0 +1,24 @@
+{
+"certificates": [
+    {
+    "name": "training.oasys.az.justice.gov.uk",
+    "environment": "prod",
+    "wildcard": false,
+    "hostname": "training.oasys",
+    "zone": "az.justice.gov.uk",
+    "zone_subscription": "a5ddf257-3b21-4ba9-a28c-ab30f751b383",
+    "dns_resource_group": "webops-prod",
+    "keyvault": "oasys-prod",
+    "keyvault_subscription": "a5ddf257-3b21-4ba9-a28c-ab30f751b383",
+    "keyvault_certname": "trainingDOToasysDOTazDOTjusticeDOTgovDOTuk",
+    "frontend_appgateways": [{"gw_name":"oasys-prod","gw_rg":"oasys-prod","gw_sub":"4bdc3aa7-2dbe-4031-aaa1-20456ed7b221","gw_cert_name":"training.oasys.az.justice.gov.uk"}],
+    "backend_appgateways": [],
+    "internal": true,
+    "debug": true,
+    "do_not_apply_cert": true,
+    "haproxy": "PDOWL00035",
+    "iis":"",
+    "AnsiblePlaybook": "fixes.yml"
+    }
+  ]
+}
