@@ -87,10 +87,10 @@ jobs:
           }}
           $test = $certSearch  | Select-Object -First 1 | convertTo-Json
           
-          echo "::set-output name=renew::$certSearch"
+          $test
 
 
-          Write-Output "::set-output name=renew::$test"
+          Write-Output "::set-output name=renew::$($test)"
           
 
   orlando:
