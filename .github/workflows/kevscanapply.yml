@@ -90,5 +90,15 @@ jobs:
           echo "::set-output name=renew::$certSearch"
 
 
-          Write-host ${{ needs.find-exp-certs.outputs.renew }}
+          Write-Output "::set-output name=renew::$test"
           
+
+  orlando:
+    name: test
+    needs: find-exp-certs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check
+        id: o
+        run: |
+          echo ${{ needs.find-exp-certs.outputs.renew }}
