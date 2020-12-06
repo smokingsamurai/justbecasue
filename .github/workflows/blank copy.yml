@@ -47,6 +47,7 @@ jobs:
           Write-Output "::set-output name=sp_secret::$a"
 
   orlando:
+    steps:
       - name: Check
         id: o
         run: |
