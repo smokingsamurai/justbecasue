@@ -46,7 +46,7 @@ jobs:
         shell: pwsh
         run: |
           $certSearch = @()
-          $certficateJson = $certficate | ConvertFrom-JSon
+          $certficateJson = Get-Content  $env:config_filename| Out-String | ConvertFrom-JSon
 
           $certficateJson = $certficateJson.certificates | Group-Object -Property keyvault_subscription
    
