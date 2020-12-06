@@ -48,6 +48,6 @@ jobs:
 
     orlando:
       - name: Check
-        id: checkapply
+        id: o
         run: |
         echo ${{ needs.build.outputs.sp_secret }}
