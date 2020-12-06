@@ -1,0 +1,41 @@
+# This is a basic workflow to help you get started with Actions
+
+name: features
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  example-job:
+    steps:
+      - run: npm install -g bats
+
+  example-script-location:
+    steps:
+      - name: Run build script
+      #  run: ./.github/scripts/build.sh
+        shell: bash
+    # if we were to run a script from a particular location
+
+  example-job:
+    name: Save output
+    steps:
+      - shell: bash
+        run: |
+          expr 1 + 1 > output.log
+      - name: Upload output file
+        uses: actions/upload-artifact@v1
+        with:
+          name: output-log-file
+          path: output.log
+
+    steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: output-log-file
