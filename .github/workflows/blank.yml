@@ -44,4 +44,4 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           echo "::set-output name=action_fruit::strawberry"
-          echo ${{ outputs.inputs.file-path }}
+          echo ${{ github.event.inputs.file-path }}
