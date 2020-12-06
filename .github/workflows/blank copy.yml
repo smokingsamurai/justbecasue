@@ -45,7 +45,7 @@ jobs:
         run: |
           $a = "12345"
           Write-Output "::set-output name=sp_secret::$a"
-
+          Write-Output "::set-output name=test::$($a)"
   orlando:
     name: test
     runs-on: ubuntu-latest
@@ -54,3 +54,4 @@ jobs:
         id: o
         run: |
           echo ${{ needs.build.outputs.sp_secret }}
+          echo ${{ needs.build.outputs.test }}
