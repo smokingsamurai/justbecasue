@@ -26,6 +26,10 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+
+    outputs:
+      renew: ${{ steps.checkapply.outputs.test }}
+  
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -55,3 +59,4 @@ jobs:
         run: |
           echo ${{ needs.build.outputs.sp_secret }}
           echo ${{ needs.build.outputs.test }}
+          echo ${{ needs.build.outputs.renew }}
