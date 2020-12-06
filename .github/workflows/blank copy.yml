@@ -30,6 +30,7 @@ jobs:
     outputs:
       renew: ${{ steps.checkapply.outputs.test }}
       renews: ${{ steps.checkapply.outputs.sp_secret }}
+      renewed: ${{ steps.checkapply.outputs.hosts }}
   
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -51,8 +52,10 @@ jobs:
           $a = "12345"
           Write-Output "::set-output name=sp_secret::$a"
           Write-Output "::set-output name=test::$($a)"
+          echo "::set-output name=hosts::${$a}"
   orlando:
     name: test
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Check
@@ -62,3 +65,4 @@ jobs:
           echo ${{ needs.build.outputs.test }}
           echo ${{ needs.build.outputs.renew }}
           echo ${{ needs.build.outputs.renews }}
+          echo ${{ needs.build.outputs.renewed }}
