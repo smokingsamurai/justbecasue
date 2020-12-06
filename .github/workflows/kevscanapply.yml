@@ -87,6 +87,8 @@ jobs:
           }}
           $test = $certSearch  | Select-Object -First 1 | convertTo-Json
           
-          
+          echo "::set-output name=renew::$certSearch"
 
+
+          Write-host ${{ needs.find-exp-certs.outputs.renew }}
           
