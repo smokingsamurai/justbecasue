@@ -43,11 +43,11 @@ jobs:
         id: checkapply
         shell: pwsh
         run: |
-        $a = "12345"
-        Write-Output "::set-output name=sp_secret::value"
+          $a = "12345"
+          Write-Output "::set-output name=sp_secret::$a"
 
     orlando:
       - name: Check
         id: o
         run: |
-        echo ${{ needs.build.outputs.sp_secret }}
+          echo ${{ needs.build.outputs.sp_secret }}
