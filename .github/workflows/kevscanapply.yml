@@ -50,7 +50,7 @@ jobs:
 
           $certficateJson = $certficateJson.certificates | Group-Object -Property keyvault_subscription
    
-          
+          write-host $certficateJson
 
           foreach ($vaults in $certficateJson){
           
